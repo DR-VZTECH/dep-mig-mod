@@ -1,7 +1,0 @@
-<odoo>
-    <template id="deplog_pdf_assets" inherit_id="web.assets_backend">
-        <xpath expr="." position="inside">
-            <script type="text/javascript" src="/deplog_storage_cloud/static/src/js/pdfjs/viewer.js"/>
-        </xpath>
-    </template>
-</odoo>
