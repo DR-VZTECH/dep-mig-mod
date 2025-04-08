@@ -81,7 +81,7 @@
 
     'images': ['static/description/banners/banner1.gif'],
 
-    'version': '15.0.1.0.3',
+    'version': '0.1',
 
     'depends': ['base', 'web', 'mail'],
 
