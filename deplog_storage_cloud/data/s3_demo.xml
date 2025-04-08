@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Configuración de demostración de S3 Storage -->
+        <record id="demo_s3_storage_settings" model="s3.storage.settings">
+            <field name="name">Configuración de Demostración</field>
+            <field name="aws_access_key">DEMO_ACCESS_KEY</field>
+            <field name="aws_secret_key">DEMO_SECRET_KEY</field>
+            <field name="bucket_name">demo-bucket</field>
+            <field name="region_name">us-east-1</field>
+            <field name="is_active" eval="False"/>
+        </record>
+    </data>
+</odoo>

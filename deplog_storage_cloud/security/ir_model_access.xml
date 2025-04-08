@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Permisos para el modelo s3.storage.settings -->
+    <record id="access_s3_storage_settings_manager" model="ir.model.access">
+        <field name="name">s3.storage.settings access for ERP Manager</field>
+        <field name="model_id" ref="deplog_storage_cloud.model_s3_storage_settings"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record id="access_s3_storage_wizard" model="ir.model.access">
+        <field name="name">access_s3_storage_wizard</field>
+        <field name="model_id" ref="model_s3_storage_wizard"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

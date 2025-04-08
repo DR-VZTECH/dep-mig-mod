@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <!-- Acción para abrir el wizard -->
+        <record id="s3_storage_wizard_action" model="ir.actions.act_window">
+            <field name="name">Subir Archivos a S3</field>
+            <field name="res_model">s3.storage.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Vista extendida de kanban para ir.attachment -->
+        <record id="view_ir_attachment_kanban_s3" model="ir.ui.view">
+            <field name="name">ir.attachment.kanban.s3.button</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="mail.view_document_file_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="js_class">s3_upload_button_kanban</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- Vista de formulario del wizard -->
+        <record id="view_s3_storage_wizard_form" model="ir.ui.view">
+            <field name="name">s3.storage.wizard.form</field>
+            <field name="model">s3.storage.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Subir Archivos a S3">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Subir Archivos a S3</h1>
+                        </div>
+                        <!-- Campo oculto para controlar el modo -->
+                        <field name="individual_upload" invisible="1"/>
+                        
+                        <!-- Filtro por tipo (solo visible en modo normal) -->
+                        <group attrs="{'invisible': [('individual_upload', '=', True)]}">
+                            <field name="mimetype_filter" string="Filtrar por Tipo de Archivo" required="0" attrs="{'required': [('individual_upload', '=', False)]}"/>
+                        </group>
+                        
+                        <group col="2">
+                            <field name="file_count" string="Archivos detectados"/>
+                        </group>
+                        <group string="Tamaño de archivos" col="4">
+                            <field name="total_size_bytes" string="Bytes" widget="integer"/>
+                            <field name="total_size_mb" string="Megabytes (MB)" widget="float"/>
+                            <field name="total_size_gb" string="Gigabytes (GB)" widget="float"/>
+                        </group>
+                        
+                        <!-- Control de visualización de archivos (solo en modo normal) -->
+                        <group attrs="{'invisible': [('individual_upload', '=', True)]}">
+                            <field name="show_files"/>
+                        </group>
+                        
+                        <!-- Lista de archivos -->
+                        <field name="attachment_ids" widget="many2many_tags" 
+                               attrs="{'invisible': [('show_files', '=', False), ('individual_upload', '=', False)]}"/>
+                    </sheet>
+                    <footer>
+                        <button string="Subir a S3" name="upload_to_s3" type="object" 
+                                class="btn-primary" attrs="{'invisible': [('file_count', '=', 0)]}"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<odoo>
+    <record id="view_attachment_form_s3" model="ir.ui.view">
+        <field name="name">ir.attachment.form.s3</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="base.view_attachment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_get_attachment_view']" position="after">
+                <button name="migrate_attachments_to_s3" string="Migrar a S3" type="object" class="oe_highlight" groups="base.group_system"/>
+            </xpath>
+            <xpath expr="//field[@name='mimetype']" position="after">
+                <field name="s3_url" readonly="1" widget="url" attrs="{'invisible': [('s3_url', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_ir_attachment_kanban_s3" model="ir.ui.view">
+        <field name="name">ir.attachment.kanban.s3</field>
+        <field name="model">ir.attachment</field>
+        <field name="inherit_id" ref="mail.view_document_file_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="js_class">s3_upload_button_kanban</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
