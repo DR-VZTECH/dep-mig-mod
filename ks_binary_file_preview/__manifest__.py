@@ -86,18 +86,18 @@
     'depends': ['base', 'web', 'mail'],
 
     'data': [
-            'views/ks_user.xml',
+            # 'views/ks_user.xml',
         ],
 
     'assets': {
-        'web.assets_backend': [
-            '/ks_binary_file_preview/static/src/js/ks_binary_preview.js',
-            '/ks_binary_file_preview/static/src/js/widget/ksListDocumentViewer.js',
+        # 'web.assets_backend': [
+        #     '/ks_binary_file_preview/static/src/js/ks_binary_preview.js',
+        #     '/ks_binary_file_preview/static/src/js/widget/ksListDocumentViewer.js',
 
-        ],
+        # ],
 
-        'web.assets_qweb': ['ks_binary_file_preview/static/src/xml/ks_binary_preview.xml',
-                            'ks_binary_file_preview/static/src/js/widget/ksListDocumentViewer.xml',
-                            ],
+        # 'web.assets_qweb': ['ks_binary_file_preview/static/src/xml/ks_binary_preview.xml',
+        #                     'ks_binary_file_preview/static/src/js/widget/ksListDocumentViewer.xml',
+        #                     ],
     },
 }
